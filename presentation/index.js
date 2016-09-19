@@ -6,6 +6,7 @@ import {
   Appear,
   BlockQuote,
   Cite,
+  Code,
   CodePane,
   Deck,
   Fill,
@@ -21,6 +22,7 @@ import {
   Spectacle,
   Text
 } from "spectacle";
+import CodeSlide from 'spectacle-code-slide';
 
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
@@ -303,11 +305,34 @@ export default class Presentation extends React.Component {
 						<ListItem>Inject concrete implementation</ListItem>
 					</List>
                 </Slide>
-				<Slide>
-					<Heading size={1} fit caps>
-						todo: basic code example dependency inversion
-					</Heading>
-				</Slide>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/dependency-inversion.example1.php")}
+					ranges={[
+					  { loc: [0, 14], title: "Infrastructure Leak" },
+					  { loc: [4, 5] },
+					  { loc: [9, 10] },
+				]}/>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/dependency-inversion.example2.php")}
+					ranges={[
+					  { loc: [0, 14], title: "Depencency Inversion Principle" },
+					  { loc: [4, 5] },
+					  { loc: [9, 10] },
+				]}/>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/dependency-inversion.example3.php")}
+					ranges={[
+					  { loc: [0, 14], title: "Depencency Inversion Principle" },
+					  { loc: [2, 3] },
+					  { loc: [4, 5] },
+					  { loc: [9, 10] },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Crossing boundaries in your application
@@ -351,11 +376,15 @@ export default class Presentation extends React.Component {
 						</Appear>
 					</List>
                 </Slide>
-				<Slide>
-					<Heading size={1} fit caps>
-						todo: code example of a command
-					</Heading>
-				</Slide>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/command.example.php")}
+					ranges={[
+					  { loc: [0, 15], title: "Plain Old PHP Object" },
+					  { loc: [2, 3], title: "Name expresses intent" },
+					  { loc: [4, 7], title: "Just data" },
+				]}/>
                 <Slide>
                     <Heading size={2} caps>
                         Port &amp; Adapter <Appear fid="1"><Text>&#8680; Handler</Text></Appear>
@@ -369,16 +398,25 @@ export default class Presentation extends React.Component {
 						</Appear>
 					</List>
                 </Slide>
-				<Slide>
-					<Heading size={1} fit caps>
-						todo: code example of a handler
-					</Heading>
-				</Slide>
-				<Slide>
-					<Heading size={1} fit caps>
-						todo: code example of a command + handler in a controller
-					</Heading>
-				</Slide>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/handler.example.php")}
+					ranges={[
+					  { loc: [0, 23], title: "Command Handler" },
+					  { loc: [4, 10], note: "Inject dependencies" },
+					  { loc: [11, 12], note: "Receive Message" },
+					  { loc: [13, 21], note: "Do something" },
+				]}/>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/controller-handler.example.php")}
+					ranges={[
+					  { loc: [0, 24], title: "Controller" },
+					  { loc: [9, 14], note: "Create command" },
+					  { loc: [15, 17], note: "Pass command to handler" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Command Bus
@@ -398,11 +436,14 @@ export default class Presentation extends React.Component {
 						</Appear>
 					</List>
                 </Slide>
-				<Slide>
-					<Heading size={1} fit caps>
-						todo: code example of a command + bus in a controller
-					</Heading>
-				</Slide>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/controller-bus.example.php")}
+					ranges={[
+					  { loc: [0, 23], title: "Controller" },
+					  { loc: [15, 16], note: "Pass command to bus" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Overengineerd?
@@ -412,7 +453,7 @@ export default class Presentation extends React.Component {
 							<ListItem>Slim controllers</ListItem>
 						</Appear>
 						<Appear fid="2">
-							<ListItem>Infrastructure independend / Reusable</ListItem>
+							<ListItem>Infrastructure independent / Reusable</ListItem>
 						</Appear>
 						<Appear fid="3">
 							<ListItem>Easily testable</ListItem>
@@ -443,11 +484,17 @@ export default class Presentation extends React.Component {
                         Generate necessary stuff outside handler
                     </Heading>
 				</Slide>
-				<Slide>
-					<Heading size={1} fit caps>
-						todo: code example of generating external ID
-					</Heading>
-				</Slide>
+				<CodeSlide
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/generate-id.example.php")}
+					ranges={[
+					  { loc: [0, 47], title: "Controller" },
+					  { loc: [10, 11], note: "Generate ID" },
+					  { loc: [12, 18], note: "Put ID in Command" },
+					  { loc: [21, 22], note: "Redirect to detail page" },
+					  { loc: [32, 38], note: "Get ID from request" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Smart naming
@@ -485,6 +532,19 @@ export default class Presentation extends React.Component {
 				</Slide>
                 <Slide>
                     <Heading size={2} fit caps>
+                        Assume Command's are put on a queue
+                    </Heading>
+					<List>
+						<Appear fid="1">
+							<ListItem>No immediate result</ListItem>
+						</Appear>
+						<Appear fid="2">
+							<ListItem>May require changes to your code</ListItem>
+						</Appear>
+					</List>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
                         The dependency rule
                     </Heading>
 				</Slide>
@@ -499,6 +559,21 @@ export default class Presentation extends React.Component {
 						<ListItem>Matthias Noback - <Link href="http://www.slideshare.net/matthiasnoback/hexagonal-architecture-messageoriented-software-design-php-benelux-2016">Slides PHPBenelux 2016</Link></ListItem>
 						<ListItem>DDD in PHP - <Link href="https://leanpub.com/ddd-in-php">https://leanpub.com/ddd-in-php</Link></ListItem>
 					</List>
+				</Slide>
+                <Slide>
+                    <Heading size={2} caps>
+                        Thank You!
+                    </Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} caps>
+                        Questions?
+                    </Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        <Link href="https://legacy.joind.in/19077">https://legacy.joind.in/19077</Link>
+                    </Heading>
 				</Slide>
             </Deck>
         </Spectacle>
