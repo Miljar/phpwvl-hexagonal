@@ -286,21 +286,28 @@ export default class Presentation extends React.Component {
                     <Heading size={2} fit caps>
                         Crossing boundaries comes with rules
 					</Heading>
+                </Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        The Dependency Rule
+					</Heading>
+					<Text>Dependencies only point inward</Text>
+                </Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        The Dependency Inversion Principle
+					</Heading>
+					<Text textSize="0.7em">(or how to not leak infrastructure details)</Text>
 					<List>
-						<Appear fid="1">
-							<ListItem>
-								Only rely on dependencies from
-								<List margin="0px 0px 0px 90px">
-									<ListItem>Your own layer</ListItem>
-									<ListItem>A layer closer to the core</ListItem>
-								</List>
-							</ListItem>
-						</Appear>
-						<Appear fid="2">
-							<ListItem>Don't leak infrastructure details <Appear fid="3"><strong>ever</strong></Appear></ListItem>
-						</Appear>
+						<ListItem>Depend on <Code>Interface</Code></ListItem>
+						<ListItem>Inject concrete implementation</ListItem>
 					</List>
                 </Slide>
+				<Slide>
+					<Heading size={1} fit caps>
+						todo: basic code example dependency inversion
+					</Heading>
+				</Slide>
                 <Slide>
                     <Heading size={2} fit caps>
                         Crossing boundaries in your application
@@ -339,6 +346,9 @@ export default class Presentation extends React.Component {
 						<Appear fid="4">
 							<ListItem>Suggests a <strong>change</strong></ListItem>
 						</Appear>
+						<Appear fid="5">
+							<ListItem><strong>Repeatable</strong></ListItem>
+						</Appear>
 					</List>
                 </Slide>
 				<Slide>
@@ -348,11 +358,11 @@ export default class Presentation extends React.Component {
 				</Slide>
                 <Slide>
                     <Heading size={2} caps>
-                        Port <Appear fid="1"><Text>&#8680; Handler</Text></Appear>
+                        Port &amp; Adapter <Appear fid="1"><Text>&#8680; Handler</Text></Appear>
                     </Heading>
 					<List>
 						<Appear fid="2">
-							<ListItem>Receives data</ListItem>
+							<ListItem>Receives a Message/Command</ListItem>
 						</Appear>
 						<Appear fid="3">
 							<ListItem>Knows what to do with it</ListItem>
@@ -368,6 +378,127 @@ export default class Presentation extends React.Component {
 					<Heading size={1} fit caps>
 						todo: code example of a command + handler in a controller
 					</Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Command Bus
+                    </Heading>
+					<List>
+						<Appear fid="1">
+							<ListItem>Receive Command</ListItem>
+						</Appear>
+						<Appear fid="2">
+							<ListItem>Match Handler</ListItem>
+						</Appear>
+						<Appear fid="3">
+							<ListItem>Centralized configuration</ListItem>
+						</Appear>
+						<Appear fid="4">
+							<ListItem>Middlewares</ListItem>
+						</Appear>
+					</List>
+                </Slide>
+				<Slide>
+					<Heading size={1} fit caps>
+						todo: code example of a command + bus in a controller
+					</Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Overengineerd?
+                    </Heading>
+					<List>
+						<Appear fid="1">
+							<ListItem>Slim controllers</ListItem>
+						</Appear>
+						<Appear fid="2">
+							<ListItem>Infrastructure independend / Reusable</ListItem>
+						</Appear>
+						<Appear fid="3">
+							<ListItem>Easily testable</ListItem>
+						</Appear>
+						<Appear fid="4">
+							<ListItem>Easy to maintain</ListItem>
+						</Appear>
+					</List>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Tips / Considerations
+                    </Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Commands change things
+                    </Heading>
+                    <Appear fid="1">
+                        <Text>They <strong>don't return</strong> things</Text>
+                    </Appear>
+				</Slide>
+                <Slide>
+					<Text>But how can you get the thing you just created?</Text>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Generate necessary stuff outside handler
+                    </Heading>
+				</Slide>
+				<Slide>
+					<Heading size={1} fit caps>
+						todo: code example of generating external ID
+					</Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Smart naming
+                    </Heading>
+                    <Appear fid="1">
+                        <Text><Code>CreateUser</Code> &amp; <Code>EditUser</Code> &#8680; <Code>SaveUser</Code></Text>
+                    </Appear>
+					<List>
+						<Appear fid="2">
+							<ListItem>Reusable</ListItem>
+						</Appear>
+						<Appear fid="3">
+							<ListItem>Easier to maintain</ListItem>
+						</Appear>
+					</List>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Atomic Commands
+                    </Heading>
+                    <Appear fid="1">
+                        <Text><Code>RegisterUser</Code> &#8680; <Code>SaveUser</Code> &amp; <Code>SendRegistrationMail</Code></Text>
+                    </Appear>
+					<List>
+						<Appear fid="2">
+							<ListItem>Reusable</ListItem>
+						</Appear>
+						<Appear fid="3">
+							<ListItem>Easier to maintain</ListItem>
+						</Appear>
+						<Appear fid="4">
+							<ListItem>Explicit intention</ListItem>
+						</Appear>
+					</List>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        The dependency rule
+                    </Heading>
+				</Slide>
+                <Slide>
+                    <Heading size={2} fit caps>
+                        Tools / Libraries
+                    </Heading>
+					<List>
+						<ListItem>Allistair Cockburn - Hexagonal Architecture - <Link href="http://alistair.cockburn.us/Hexagonal+architecture">http://alistair.cockburn.us/Hexagonal+architecture</Link></ListItem>
+						<ListItem>Tactician - Command Bus - <Link href="https://tactician.thephpleague.com/">https://tactician.thephpleague.com/</Link></ListItem>
+						<ListItem>SimpleBus - Command Bus &amp; more - <Link href="http://simplebus.github.io/MessageBus/">http://simplebus.github.io/MessageBus/</Link></ListItem>
+						<ListItem>Matthias Noback - <Link href="http://www.slideshare.net/matthiasnoback/hexagonal-architecture-messageoriented-software-design-php-benelux-2016">Slides PHPBenelux 2016</Link></ListItem>
+						<ListItem>DDD in PHP - <Link href="https://leanpub.com/ddd-in-php">https://leanpub.com/ddd-in-php</Link></ListItem>
+					</List>
 				</Slide>
             </Deck>
         </Spectacle>
