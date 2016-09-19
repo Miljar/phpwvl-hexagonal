@@ -40,6 +40,7 @@ require("spectacle/lib/themes/default/index.css");
 
 const images = {
   dddstyles: require("../assets/ddd-styles.png"),
+  dominfr: require("../assets/domain-infrastructure.png"),
   memeboratnot: require("../assets/meme-borat-not.jpg"),
   memefw: require("../assets/meme-fw.jpg"),
   mememind: require("../assets/meme-mind.jpg"),
@@ -262,9 +263,7 @@ export default class Presentation extends React.Component {
                     </List>
                 </Slide>
 				<Slide>
-					<Heading size={1} fit caps>
-						todo: image Domain &amp; Infrastructure
-					</Heading>
+					<Image src={images.dominfr.replace("/", "")} margin="0px auto 40px" />
 				</Slide>
                 <Slide>
                     <Heading size={2} fit caps>
