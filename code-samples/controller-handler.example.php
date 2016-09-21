@@ -1,6 +1,6 @@
 <?php
 
-class BlogAdminController
+class BlogAdminController extends BaseController
 {
 	public function createAction($request)
 	{

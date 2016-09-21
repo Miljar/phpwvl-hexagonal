@@ -305,32 +305,15 @@ export default class Presentation extends React.Component {
 					</List>
                 </Slide>
 				<CodeSlide
+                    textSize="0.6em"
 					transition={[]}
 					lang="js"
 					code={require("raw!../code-samples/dependency-inversion.example1.php")}
 					ranges={[
-					  { loc: [0, 14], title: "Infrastructure Leak" },
-					  { loc: [4, 5] },
-					  { loc: [9, 10] },
-				]}/>
-				<CodeSlide
-					transition={[]}
-					lang="js"
-					code={require("raw!../code-samples/dependency-inversion.example2.php")}
-					ranges={[
-					  { loc: [0, 14], title: "Depencency Inversion Principle" },
-					  { loc: [4, 5] },
-					  { loc: [9, 10] },
-				]}/>
-				<CodeSlide
-					transition={[]}
-					lang="js"
-					code={require("raw!../code-samples/dependency-inversion.example3.php")}
-					ranges={[
-					  { loc: [0, 14], title: "Depencency Inversion Principle" },
-					  { loc: [2, 3] },
-					  { loc: [4, 5] },
-					  { loc: [9, 10] },
+					  { loc: [0, 59], title: "Dependency Inversion" },
+					  { loc: [0, 14], note: "Infrastructure Leak" },
+					  { loc: [22, 34], note: "Depend on interface" },
+					  { loc: [41, 53], note: "Concrete implementation" },
 				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
@@ -376,13 +359,14 @@ export default class Presentation extends React.Component {
 					</List>
                 </Slide>
 				<CodeSlide
+                    textSize="0.6em"
 					transition={[]}
 					lang="js"
 					code={require("raw!../code-samples/command.example.php")}
 					ranges={[
-					  { loc: [0, 15], title: "Plain Old PHP Object" },
-					  { loc: [2, 3], title: "Name expresses intent" },
-					  { loc: [4, 7], title: "Just data" },
+					  { loc: [0, 15], title: "Command" },
+					  { loc: [2, 3], note: "Name expresses intent" },
+					  { loc: [4, 7], note: "Just data, POPO" },
 				]}/>
                 <Slide>
                     <Heading size={2} caps>
@@ -398,6 +382,7 @@ export default class Presentation extends React.Component {
 					</List>
                 </Slide>
 				<CodeSlide
+                    textSize="0.6em"
 					transition={[]}
 					lang="js"
 					code={require("raw!../code-samples/handler.example.php")}
@@ -408,6 +393,7 @@ export default class Presentation extends React.Component {
 					  { loc: [13, 21], note: "Do something" },
 				]}/>
 				<CodeSlide
+                    textSize="0.6em"
 					transition={[]}
 					lang="js"
 					code={require("raw!../code-samples/controller-handler.example.php")}
@@ -436,11 +422,13 @@ export default class Presentation extends React.Component {
 					</List>
                 </Slide>
 				<CodeSlide
+                    textSize="0.6em"
 					transition={[]}
 					lang="js"
 					code={require("raw!../code-samples/controller-bus.example.php")}
 					ranges={[
-					  { loc: [0, 23], title: "Controller" },
+					  { loc: [0, 23], title: "Same controller" },
+					  { loc: [9, 14], note: "Same command" },
 					  { loc: [15, 16], note: "Pass command to bus" },
 				]}/>
                 <Slide>
@@ -484,15 +472,18 @@ export default class Presentation extends React.Component {
                     </Heading>
 				</Slide>
 				<CodeSlide
+                    textSize="0.6em"
 					transition={[]}
 					lang="js"
 					code={require("raw!../code-samples/generate-id.example.php")}
 					ranges={[
 					  { loc: [0, 47], title: "Controller" },
+					  { loc: [4, 5], note: "Creating new data" },
 					  { loc: [10, 11], note: "Generate ID" },
 					  { loc: [12, 18], note: "Put ID in Command" },
 					  { loc: [21, 22], note: "Redirect to detail page" },
-					  { loc: [32, 38], note: "Get ID from request" },
+					  { loc: [27, 28], note: "Updating existing data" },
+					  { loc: [32, 38], note: "Get ID from request/url" },
 				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
@@ -512,25 +503,6 @@ export default class Presentation extends React.Component {
 				</Slide>
                 <Slide>
                     <Heading size={2} fit caps>
-                        Atomic Commands
-                    </Heading>
-                    <Appear fid="1">
-                        <Text><Code>RegisterUser</Code> &#8680; <Code>SaveUser</Code> &amp; <Code>SendRegistrationMail</Code></Text>
-                    </Appear>
-					<List>
-						<Appear fid="2">
-							<ListItem>Reusable</ListItem>
-						</Appear>
-						<Appear fid="3">
-							<ListItem>Easier to maintain</ListItem>
-						</Appear>
-						<Appear fid="4">
-							<ListItem>Explicit intention</ListItem>
-						</Appear>
-					</List>
-				</Slide>
-                <Slide>
-                    <Heading size={2} fit caps>
                         Assume Command's are put on a queue
                     </Heading>
 					<List>
@@ -544,7 +516,7 @@ export default class Presentation extends React.Component {
 				</Slide>
                 <Slide>
                     <Heading size={2} fit caps>
-                        The dependency rule
+                        ! The dependency rule !
                     </Heading>
 				</Slide>
                 <Slide>
