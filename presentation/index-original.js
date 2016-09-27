@@ -22,6 +22,7 @@ import {
   Spectacle,
   Text
 } from "spectacle";
+import CodeSlide from 'spectacle-code-slide';
 
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
@@ -303,30 +304,17 @@ export default class Presentation extends React.Component {
 						<ListItem>Inject concrete implementation</ListItem>
 					</List>
                 </Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/dependency-inversion.example1split.php")}
-						margin="20px auto"
-					/>
-				</Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/dependency-inversion.example2.php")}
-						margin="20px auto"
-					/>
-				</Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/dependency-inversion.example3.php")}
-						margin="20px auto"
-					/>
-				</Slide>
+				<CodeSlide
+                    textSize="0.6em"
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/dependency-inversion.example1.php")}
+					ranges={[
+					  { loc: [0, 59], title: "Dependency Inversion" },
+					  { loc: [0, 14], note: "Infrastructure Leak" },
+					  { loc: [22, 34], note: "Depend on interface" },
+					  { loc: [41, 53], note: "Concrete implementation" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Crossing boundaries in your application
@@ -370,14 +358,16 @@ export default class Presentation extends React.Component {
 						</Appear>
 					</List>
                 </Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/command.example.php")}
-						margin="20px auto"
-					/>
-				</Slide>
+				<CodeSlide
+                    textSize="0.6em"
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/command.example.php")}
+					ranges={[
+					  { loc: [0, 15], title: "Command" },
+					  { loc: [2, 3], note: "Name expresses intent" },
+					  { loc: [4, 7], note: "Just data, POPO" },
+				]}/>
                 <Slide>
                     <Heading size={2} caps>
                         Port &amp; Adapter <Appear fid="1"><Text>&#8680; Handler</Text></Appear>
@@ -391,22 +381,27 @@ export default class Presentation extends React.Component {
 						</Appear>
 					</List>
                 </Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/handler.example.php")}
-						margin="20px auto"
-					/>
-				</Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/controller-handler.example.php")}
-						margin="20px auto"
-					/>
-				</Slide>
+				<CodeSlide
+                    textSize="0.6em"
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/handler.example.php")}
+					ranges={[
+					  { loc: [0, 23], title: "Command Handler" },
+					  { loc: [4, 10], note: "Inject dependencies" },
+					  { loc: [11, 12], note: "Receive Message" },
+					  { loc: [13, 21], note: "Do something" },
+				]}/>
+				<CodeSlide
+                    textSize="0.6em"
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/controller-handler.example.php")}
+					ranges={[
+					  { loc: [0, 24], title: "Controller" },
+					  { loc: [9, 14], note: "Create command" },
+					  { loc: [15, 17], note: "Pass command to handler" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Command Bus
@@ -426,14 +421,16 @@ export default class Presentation extends React.Component {
 						</Appear>
 					</List>
                 </Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/controller-bus.example.php")}
-						margin="20px auto"
-					/>
-				</Slide>
+				<CodeSlide
+                    textSize="0.6em"
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/controller-bus.example.php")}
+					ranges={[
+					  { loc: [0, 23], title: "Same controller" },
+					  { loc: [9, 14], note: "Same command" },
+					  { loc: [15, 16], note: "Pass command to bus" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Overengineerd?
@@ -474,14 +471,20 @@ export default class Presentation extends React.Component {
                         Generate necessary stuff outside handler
                     </Heading>
 				</Slide>
-				<Slide>
-					<CodePane
-						textSize="0.6em"
-						lang="php"
-						source={require("raw!../code-samples/generate-id.example.php")}
-						margin="20px auto"
-					/>
-				</Slide>
+				<CodeSlide
+                    textSize="0.6em"
+					transition={[]}
+					lang="js"
+					code={require("raw!../code-samples/generate-id.example.php")}
+					ranges={[
+					  { loc: [0, 47], title: "Controller" },
+					  { loc: [4, 5], note: "Creating new data" },
+					  { loc: [10, 11], note: "Generate ID" },
+					  { loc: [12, 18], note: "Put ID in Command" },
+					  { loc: [21, 22], note: "Redirect to detail page" },
+					  { loc: [27, 28], note: "Updating existing data" },
+					  { loc: [32, 38], note: "Get ID from request/url" },
+				]}/>
                 <Slide>
                     <Heading size={2} fit caps>
                         Smart naming
